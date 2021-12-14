@@ -6,6 +6,7 @@ interface ViewProps {
   title: string;
   favIcon?: string;
   imageGallery?: string[];
+  withBanner?: boolean;
 }
 
 const View: React.FC<ViewProps> = function ({
@@ -13,6 +14,7 @@ const View: React.FC<ViewProps> = function ({
   title,
   favIcon,
   imageGallery = [],
+  withBanner,
 }) {
   return (
     <>
@@ -22,7 +24,12 @@ const View: React.FC<ViewProps> = function ({
       </Head>
       <div className="h-screen w-screen bg-gray-100">
         {imageGallery?.length > 0 && <ImageGallery imageURLs={imageGallery} />}
-        <div className="absolute w-full h-full z-10 p-12">{children}</div>
+        {withBanner && (
+          <div className="absolute bottom-0 w-screen h-64 bg-gradient-to-t from-black" />
+        )}
+        <div className="absolute w-full h-full z-10 p-12">
+          <div className="relative w-full h-full">{children}</div>
+        </div>
       </div>
     </>
   );
