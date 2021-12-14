@@ -21,6 +21,6 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "react/extensions": "off"
+    "import/extensions": "off"
   }
 }
