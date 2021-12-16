@@ -9,9 +9,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = function ({ imageURLs }) {
   const getRandomImageIndex = (): number =>
     Math.round(Math.random() * (imageURLs.length - 1));
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(
-    getRandomImageIndex()
-  ); // Start with a random image
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // Start with a random image
 
   useEffect(() => {
     const delay = 5000;
@@ -26,21 +24,19 @@ const ImageGallery: React.FC<ImageGalleryProps> = function ({ imageURLs }) {
 
   return (
     <div className="w-screen h-screen absolute top-0 left-0 z-0">
-      {imageURLs.map((imageURL, index) => {
-        const isCurrentImage = currentImageIndex === index;
-
-        return (
+      <div className="relative w-full h-full">
+        {imageURLs.map((imageURL, index) => (
           <Image
-            src={imageURL}
             key={imageURL}
+            src={imageURL}
             layout="fill"
             objectFit="cover"
             className={`transition duration-500 ${
-              isCurrentImage ? "opacity-100" : "opacity-0"
+              currentImageIndex === index ? "opacity-100" : "opacity-0"
             }`}
           />
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };
